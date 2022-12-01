@@ -41,23 +41,13 @@ const handleEditChange =(input)=>(e)=>{
   console.log(editPost)
   
 }
-// var i
-// const ids =(id)=>{
-//   console.log(id)
-//   i=id
 
-// }
-// console.log(posts._id)
 
 const updateData = async ()=>{
-  // e.preventDefault();
-
-  // const {_id,product_name,category_name,description,status}=editPost;
+ 
     await  axios.put(`http://localhost:8080/product/${editPost.id}`,editPost
     
   ) 
-  
-
 }
 const postDelete =(id)=>{
   window.location.reload();
@@ -117,7 +107,9 @@ useEffect(()=>{
             </thead>
             <tbody>
                 {posts.filter((post)=>{
-                  return search.toLowerCase()=== '' ? post: post.product_name.toLowerCase().includes(search)
+                  return search.toLowerCase()=== '' ? 
+                  post: post.product_name.toLowerCase().includes(search)
+                   ||post.category_name.toLowerCase().includes(search)
                 }).map((post)=>(<tr key={post._id}>
                     <td>{post.product_name}</td>
                     <td>{post.category_name}</td>
